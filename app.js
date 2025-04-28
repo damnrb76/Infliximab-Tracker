@@ -71,8 +71,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const now = new Date();
 
     const diffMs = nextDate - now;
-    const hours48 = 48 * 60 * 60 * 1000;
-    const hours24 = 24 * 60 * 60 * 1000;
+    const hours48 = 1 * 60 * 1000;  // 1 minute (for testing)
+    const hours24 = 1 * 60 * 1000;  // 1 minute (for testing)
 
     if (diffMs > 0) {
       // Schedule 48h notification
