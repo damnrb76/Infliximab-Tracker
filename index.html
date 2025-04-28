@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infliximab Injection Tracker</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#ff6f61">
+</head>
+<body>
+  <div class="container">
+    <h1>Infliximab Injection Tracker</h1>
+
+    <form id="injectionForm">
+      <label for="injectionDate">Date of Injection:</label>
+      <input type="date" id="injectionDate" required>
+
+      <label for="bodyLocation">Body Location:</label>
+      <input type="text" id="bodyLocation" required>
+
+      <label for="sideEffects">Side Effects:</label>
+      <textarea id="sideEffects" placeholder="Optional"></textarea>
+
+      <label for="serialNumber">Injection Serial Number:</label>
+      <input type="text" id="serialNumber" required>
+
+      <button type="submit">Save Injection</button>
+    </form>
+
+    <h2>Injection History</h2>
+    <ul id="historyList"></ul>
+
+    <h2>Next Injection Schedule</h2>
+    <p id="nextInjection"></p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
