@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     Notification.requestPermission();
   }
 
+  // Handle form submission
   form.addEventListener('submit', (e) => {
     e.preventDefault();
     const date = document.getElementById('injectionDate').value;
@@ -29,9 +30,10 @@ document.addEventListener('DOMContentLoaded', () => {
     scheduleNotifications();
   });
 
+  // Display all logged injections
   function displayHistory() {
     historyList.innerHTML = '';
-    injections.forEach((inj, index) => {
+    injections.forEach((inj) => {
       const li = document.createElement('li');
       li.innerHTML = `<strong>Date:</strong> ${inj.date} <br> 
                       <strong>Location:</strong> ${inj.location} <br>
@@ -41,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Display next scheduled injection date
   function displayNextInjection() {
     if (injections.length === 0) {
       nextInjection.innerText = 'No injections logged yet.';
@@ -57,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
     localStorage.setItem('nextInjectionDate', nextDate);
   }
 
+  // Schedule browser notifications
   function scheduleNotifications() {
     if (Notification.permission !== 'granted') return;
 
@@ -83,7 +87,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Load everything initially
+  // Register service worker
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(() => console.log('Service Worker Registered'))
+      .catch(err => console.error('Service Worker registration failed:', err));
+  }
+
+  // Load everything immediately
   displayHistory();
   displayNextInjection();
   scheduleNotifications();
